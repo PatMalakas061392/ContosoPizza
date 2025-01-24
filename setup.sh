@@ -21,6 +21,7 @@ PLAN_NAME=myPlan
 printf "\nCreating App Service plan in FREE tier ... (2/7)\n\n"
 
 REMOTE_NAME=production
+ORIGIN=main
 
 
 az appservice plan create --name $apiappname --resource-group $RESOURCE_GROUP --sku FREE --location centralus --verbose
@@ -28,8 +29,8 @@ az appservice plan create --name $apiappname --resource-group $RESOURCE_GROUP --
 printf "\nCreating API App ... (3/7)\n\n"
 
 az webapp create --name $apiappname --resource-group $RESOURCE_GROUP --plan $apiappname --deployment-local-git --verbose
-az webapp config appsettings set --name $apiappname --resource-group $RESOURCE_GROUP --settings DEPLOYMENT_BRANCH=$REMOTE_NAME
-git push azure $REMOTE_NAME
+az webapp config appsettings set --name $apiappname --resource-group $RESOURCE_GROUP --settings DEPLOYMENT_BRANCH=$ORIGIN
+git push azure $ORIGIN
 
 
 printf "\nSetting the account-level deployment credentials ...(4/7)\n\n"
@@ -54,6 +55,7 @@ printf "\nSetting Git remote...(5/7)\n\n"
 
 
 git remote add $REMOTE_NAME $GIT_URL
+git push $REMOTE_NAME $ORIGIN
 
 
 printf "\nGit add...(6/7)\n\n"
