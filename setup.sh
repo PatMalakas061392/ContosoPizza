@@ -41,7 +41,7 @@ GIT_URL="https://$DEPLOY_USER@$apiappname.scm.azurewebsites.net/$apiappname.git"
 
 # Create Web App with local-git deploy
 
-REMOTE_NAME=production
+REMOTE_NAME=origin
 
 
 # Set remote on src
