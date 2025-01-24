@@ -20,14 +20,16 @@ PLAN_NAME=myPlan
 
 printf "\nCreating App Service plan in FREE tier ... (2/7)\n\n"
 
+REMOTE_NAME=production
+
 
 az appservice plan create --name $apiappname --resource-group $RESOURCE_GROUP --sku FREE --location centralus --verbose
 
 printf "\nCreating API App ... (3/7)\n\n"
 
 az webapp create --name $apiappname --resource-group $RESOURCE_GROUP --plan $apiappname --deployment-local-git --verbose
-az webapp config appsettings set --name $apiappname --resource-group $RESOURCE_GROUP --settings DEPLOYMENT_BRANCH='main'
-git push azure main
+az webapp config appsettings set --name $apiappname --resource-group $RESOURCE_GROUP --settings DEPLOYMENT_BRANCH=$REMOTE_NAME
+git push azure $REMOTE_NAME
 
 
 printf "\nSetting the account-level deployment credentials ...(4/7)\n\n"
@@ -44,7 +46,7 @@ GIT_URL="https://$DEPLOY_USER@$apiappname.scm.azurewebsites.net/$apiappname.git"
 
 # Create Web App with local-git deploy
 
-REMOTE_NAME=production
+
 
 
 # Set remote on src
