@@ -25,7 +25,8 @@ az appservice plan create --name $apiappname --resource-group $RESOURCE_GROUP --
 
 printf "\nCreating API App ... (3/7)\n\n"
 
-az webapp create --name $apiappname --resource-group $RESOURCE_GROUP --plan $apiappname --deployment-local-git --verbose
+az webapp create --name $apiappname --resource-group $RESOURCE_GROUP --plan $apiappname --settings DEPLOYMENT_BRANCH='main' --deployment-local-git --verbose 
+git push azure main
 
 
 printf "\nSetting the account-level deployment credentials ...(4/7)\n\n"
@@ -35,6 +36,7 @@ DEPLOY_USER="myName1$(openssl rand -hex 5)"
 DEPLOY_PASSWORD="Pw1$(openssl rand -hex 10)"
 
 az webapp deployment user set --user-name $DEPLOY_USER --password $DEPLOY_PASSWORD --verbose
+
 
 
 GIT_URL="https://$DEPLOY_USER@$apiappname.scm.azurewebsites.net/$apiappname.git"
