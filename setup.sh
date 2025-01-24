@@ -30,7 +30,7 @@ printf "\nCreating API App ... (3/7)\n\n"
 
 az webapp create --name $apiappname --resource-group $RESOURCE_GROUP --plan $apiappname --deployment-local-git --verbose
 az webapp config appsettings set --name $apiappname --resource-group $RESOURCE_GROUP --settings DEPLOYMENT_BRANCH=$ORIGIN
-git push azure $ORIGIN
+#git push azure $ORIGIN
 
 
 printf "\nSetting the account-level deployment credentials ...(4/7)\n\n"
