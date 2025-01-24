@@ -25,7 +25,8 @@ az appservice plan create --name $apiappname --resource-group $RESOURCE_GROUP --
 
 printf "\nCreating API App ... (3/7)\n\n"
 
-az webapp create --name $apiappname --resource-group $RESOURCE_GROUP --plan $apiappname --settings DEPLOYMENT_BRANCH='main' --deployment-local-git --verbose 
+az webapp create --name $apiappname --resource-group $RESOURCE_GROUP --plan $apiappname --deployment-local-git --verbose
+az webapp config appsettings set --name $apiappname --resource-group $RESOURCE_GROUP --settings DEPLOYMENT_BRANCH='main'
 git push azure main
 
 
