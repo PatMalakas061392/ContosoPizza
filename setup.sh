@@ -43,7 +43,7 @@ az webapp deployment user set --user-name $DEPLOY_USER --password $DEPLOY_PASSWO
 
 
 
-GIT_URL="https://$DEPLOY_USER@$apiappname.scm.azurewebsites.net/$apiappname.git"
+GIT_URL="https://$DEPLOY_USER:$DEPLOY_PASSWORD@$apiappname.scm.azurewebsites.net/$apiappname.git"
 
 # Create Web App with local-git deploy
 
