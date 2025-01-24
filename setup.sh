@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+﻿#!/bin/basheru7
 
 apiappname=PizzaCoAPI$(openssl rand -hex 5)
 
